@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -29,6 +30,8 @@ public class MainView {
     public Text MagnetsNumber;
     @FXML
     public Button logoutButton;
+    @FXML
+    public TextField friendName;
     @FXML
     public Button addButton;
     @FXML
@@ -53,6 +56,8 @@ public class MainView {
     private List<Magnet> missingMagnets;
     private BigDataManager bigDataManager = new BigDataManager();
     private List<String> allAreasList = Arrays.asList("Vilniaus apskritis", "Kauno apskritis", "Klaipėdos apskritis", "Šiaulių apskritis", "Telšių apskritis", "Marijampolės apskritis", "Tauragės apskritis", "Utenos apskritis", "Panevėžio apskritis", "Alytaus apskritis");
+
+
 
     public void setData(List<User> listOfUsers, User user) throws FileNotFoundException {
         this.listOfUsers = listOfUsers;
@@ -199,4 +204,19 @@ public class MainView {
         }
     }
 
+    public void addFriend(ActionEvent actionEvent) {
+
+    }
+
+    public void search(ActionEvent actionEvent) throws IOException {
+
+        String searchingFriend = friendName.getText();
+
+        List <String> notFriends = new ArrayList<String>();
+        List <String> myFriends = new ArrayList<String>();
+
+        int size = bigDataManager.getAllUserListFromDataBase().size();
+
+
+    }
 }
