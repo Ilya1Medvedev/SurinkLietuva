@@ -19,7 +19,7 @@ public class BigDataManager {
 
     public List<Magnet> getAllMagnetsListFromDataBase() throws FileNotFoundException {
 
-        file = new File("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\MagnetsDataBase");
+        file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\MagnetsDataBase");
         Scanner scanner = new Scanner(file);
         String line;
         String permArea = "Vilniaus apskritis";
@@ -62,7 +62,7 @@ public class BigDataManager {
     }
 
     public List<User> getAllUserListFromDataBase() throws FileNotFoundException {
-        file = new File("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\UsersDataBase");
+        file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\UsersDataBase");
         List<User> users = new ArrayList<>();
         Scanner scanner = new Scanner(file);
         List<String> tempStrings;
@@ -93,7 +93,7 @@ public class BigDataManager {
     }
 
     public void writeAllUsersToDB(List<User> usersToWrite) throws IOException {
-        file = new File("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\UsersDataBase");
+        file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\UsersDataBase");
         FileWriter writer = null;
         writer = new FileWriter(file);
         for (int i = 0; i < usersToWrite.size(); i++) {

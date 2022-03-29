@@ -14,8 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class MagnetInfoView {
@@ -38,39 +37,40 @@ public class MagnetInfoView {
         fillTables();
     }
 
-    private void fillTables() {
+    private void fillTables() throws FileNotFoundException {
+        String imgFolderPath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\surinklietuva\\Images";
         regionImage.setImage(null);
         Image img = null;
         switch (magnet.getArea()) {
             case "Vilniaus apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Vilnius.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Vilnius.png"));
                 break;
             case "Kauno apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Kaunas.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Kaunas.png"));
                 break;
             case "Klaipėdos apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Klaipeda.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Klaipeda.png"));
                 break;
             case "Šiaulių apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Siauliai.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Siauliai.png"));
                 break;
             case "Telšių apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Telsiai.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Telsiai.png"));
                 break;
             case "Marijampolės apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Marijampole.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Marijampole.png"));
                 break;
             case "Tauragės apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Taurage.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Taurage.png"));
                 break;
             case "Utenos apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Utena.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Utena.png"));
                 break;
             case "Panevėžio apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Panevezys.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Panevezys.png"));
                 break;
             case "Alytaus apskritis":
-                img = new Image("C:\\Users\\Vladislav\\Desktop\\VGTU\\Projektu valdymas\\Projektas\\src\\main\\java\\com\\example\\surinklietuva\\Images\\Alytus.png");
+                img = new Image(new FileInputStream(imgFolderPath + "\\Alytus.png"));
                 break;
             default:
                 int i = 0;
