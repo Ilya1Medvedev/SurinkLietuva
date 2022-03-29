@@ -27,14 +27,6 @@ public class MainView {
     @FXML
     public Text emailField;
     @FXML
-    public Text magnetukuSkaicius;
-    @FXML
-    public Text friendNameTxt;
-    @FXML
-    public Text friendSurname;
-    @FXML
-    public Text friendMail;
-    @FXML
     public Text MagnetsNumber;
     @FXML
     public Button logoutButton;
@@ -48,10 +40,6 @@ public class MainView {
     public Button removeButton;
     @FXML
     public ListView MagnetsListOfView;
-    @FXML
-    public ListView myFriends;
-    @FXML
-    public ListView friends;
     @FXML
     public ListView missingMagnetsListOfView;
     @FXML
@@ -218,64 +206,17 @@ public class MainView {
 
     public void addFriend(ActionEvent actionEvent) {
 
-        String futureFriends = friends.getSelectionModel().getSelectedItem().toString();
-        System.out.print(futureFriends);
-
-        myFriends.getItems().add(futureFriends);
-
-    }
-
-    public Button getAddButton() {
-        return addButton;
     }
 
     public void search(ActionEvent actionEvent) throws IOException {
 
-        friends.getItems().clear();
+        String searchingFriend = friendName.getText();
 
-        for(User u: listOfUsers){
-            if(u.getName().equals(friendName.getText())){
-                System.out.print(u);
-                friends.getItems().add(u.getName() + " " + u.getSurname());
-            }
-        }
-    }
+        List <String> notFriends = new ArrayList<String>();
+        List <String> myFriends = new ArrayList<String>();
 
-    public User getUserData(String name, String surname) throws FileNotFoundException {
+        int size = bigDataManager.getAllUserListFromDataBase().size();
 
-        listOfUsers = bigDataManager.getAllUserListFromDataBase();
-
-        for(User u: listOfUsers){
-            if(u.getName().equals(name) && u.getSurname().equals(surname)){
-
-                return u;
-
-            }
-        }
-
-        return null;
-    }
-
-    public void showFriend(ActionEvent actionEvent) throws FileNotFoundException {
-
-        User userInfo = new User();
-
-        String friend = myFriends.getSelectionModel().getSelectedItem().toString();
-
-        String[] parts = friend.split(" ");
-
-        String part1 = parts[0];
-        String part2 = parts[1];
-
-        userInfo = getUserData(part1, part2);
-
-        friendNameTxt.setText(userInfo.getName());
-        friendSurname.setText(userInfo.getSurname());
-        friendMail.setText(userInfo.getMail());
-
-        int magnetukai = userInfo.getMagnetList().size();
-        magnetukuSkaicius.setText(String.valueOf(magnetukai));
 
     }
 }
-
