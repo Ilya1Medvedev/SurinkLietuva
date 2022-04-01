@@ -10,6 +10,7 @@ module com.example.surinklietuva {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires junit;
+    requires java.sql;
 
     opens com.example.surinklietuva to javafx.fxml;
     exports com.example.surinklietuva;

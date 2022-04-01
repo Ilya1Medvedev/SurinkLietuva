@@ -3,6 +3,7 @@ package com.example.surinklietuva.DataStructures;
 import java.util.List;
 
 public class User {
+    private int userID;
     private String name;
     private String surname;
     private String username;
@@ -20,6 +21,15 @@ public class User {
         this.mail = mail;
         this.password = password;
         this.magnetList = magnetList;
+    }
+
+    public User(int userID, String name, String surname, String username, String mail, String password) {
+        this.userID = userID;
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.mail = mail;
+        this.password = password;
     }
 
     public String getUserInfoForDataBase() {
@@ -85,5 +95,14 @@ public class User {
     public void setMagnetList(List<Magnet> magnetList) {
         this.magnetList = magnetList;
     }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
 }
 
