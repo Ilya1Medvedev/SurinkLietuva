@@ -41,6 +41,10 @@ public class MainView {
     @FXML
     public ListView MagnetsListOfView;
     @FXML
+    public ListView myFriends;
+    @FXML
+    public ListView friends;
+    @FXML
     public ListView missingMagnetsListOfView;
     @FXML
     public ChoiceBox regionChoiceBox;
@@ -206,17 +210,27 @@ public class MainView {
 
     public void addFriend(ActionEvent actionEvent) {
 
+        String futureFriends = friends.getSelectionModel().getSelectedItem().toString();
+        System.out.print(futureFriends);
+
+        myFriends.getItems().add(futureFriends);
+
+    }
+
+    public Button getAddButton() {
+        return addButton;
     }
 
     public void search(ActionEvent actionEvent) throws IOException {
 
-        String searchingFriend = friendName.getText();
+        friends.getItems().clear();
 
-        List <String> notFriends = new ArrayList<String>();
-        List <String> myFriends = new ArrayList<String>();
-
-        int size = bigDataManager.getAllUserListFromDataBase().size();
-
-
+        for(User u: listOfUsers){
+            if(u.getName().equals(friendName.getText())){
+                System.out.print(u);
+                friends.getItems().add(u);
+            }
+        }
     }
+
 }
