@@ -43,7 +43,12 @@ public class SignUpView {
     public void setData(List<User> listOfUsers){
         this.listOfUsers = listOfUsers;
     }
-
+    public boolean checkPasswordLength(String passValue){
+        if(passValue.length()>15 || passValue.length()<4){
+            return false;
+        }
+        return true;
+    }
     public void returnToPrevious(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
@@ -63,8 +68,11 @@ public class SignUpView {
         String login = loginField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
+        if(!checkPasswordLength(password)){
+            AllertBox.display("Klaida","Slaptažodis turi būti ne ilgesnis 15 simbolių ir trumpesnis 4 simbolių");
+        }
         // Check if fields not null, password field and confirm password field equals
-        if(!name.equals("") && !surname.equals("") && !login.equals("") && !email.equals("") && !password.equals("") && password.equals(confirmPasswordField.getText())) {
+        else if(!name.equals("") && !surname.equals("") && !login.equals("") && !email.equals("") && !password.equals("") && password.equals(confirmPasswordField.getText())) {
             // Check if login value is distinct
             if(listOfUsers.stream().noneMatch(u-> u.getUsername().equals(login))) {
                 List<Magnet> emptyMagnetList = new ArrayList<>();
