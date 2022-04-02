@@ -35,7 +35,6 @@ public class User {
             }
         }
         return userInfo;
-
     }
 
     public String getName() {
@@ -84,6 +83,18 @@ public class User {
 
     public void setMagnetList(List<Magnet> magnetList) {
         this.magnetList = magnetList;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", mail='" + mail + '\'' +
+                ", password='" + password + '\'' +
+                ", magnetList=" + magnetList +
+                '}';
     }
 }
 

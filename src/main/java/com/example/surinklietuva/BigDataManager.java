@@ -46,6 +46,35 @@ public class BigDataManager {
         return magnets;
     }
 
+    public List<Magnet> getAllUsersListFromDataBase() throws FileNotFoundException {
+
+        file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\MagnetsDataBase");
+        Scanner scanner = new Scanner(file);
+        String line;
+        String permArea = "Vilniaus apskritis";
+        String permCity = "UKMERGĖ";
+        List<String> permShops = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            line = scanner.nextLine();
+            if (line.charAt(0) == 'A' && line.charAt(1) == 'A' && line.charAt(2) == 'A') {
+                magnets.add(new Magnet(permArea, permCity, permShops));
+                permShops = new ArrayList<>();
+                permArea = makeAreaOrCityFromLine(line);
+                line = scanner.nextLine();
+                permCity = makeAreaOrCityFromLine(line);
+            } else if (line.charAt(0) == 'M' && line.charAt(1) == 'M' && line.charAt(2) == 'M') {
+
+                magnets.add(new Magnet(permArea, permCity, permShops));
+                permShops = new ArrayList<>();
+                permCity = makeAreaOrCityFromLine(line);
+            } else {
+                permShops.add(line);
+            }
+        }
+        magnets.add(new Magnet(permArea, permCity, permShops));
+        return magnets;
+    }
+
     private String makeAreaOrCityFromLine(String line) {
 
         String area = "";
