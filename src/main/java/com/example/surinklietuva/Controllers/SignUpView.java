@@ -61,6 +61,13 @@ public class SignUpView {
                 .matches();                                                 //1.2
     }
 
+    public static boolean checkPasswordValidation(String passwordValueOfSimbols){
+        String regexPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{4,15}$";
+        return Pattern.compile(regexPattern)
+                .matcher(passwordValueOfSimbols)
+                .matches();
+    }
+
     public void returnToPrevious(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
@@ -85,6 +92,9 @@ public class SignUpView {
         }
         else if(!checkPasswordLength(password)){
             AllertBox.display("Klaida","Slaptažodis turi būti ne ilgesnis 15 simbolių ir trumpesnis 4 simbolių");
+        }
+        else if(!checkPasswordValidation(password)){
+            AllertBox.display("Klaida","Slaptažodis turi turėti savyyje 1 simbolį, viena didžiąją raidę,nors viena skaičių");
         }
         // Check if fields not null, password field and confirm password field equals
         else if(!name.equals("") && !surname.equals("") && !login.equals("") && !email.equals("") && !password.equals("") && password.equals(confirmPasswordField.getText())) {

@@ -1,13 +1,11 @@
 package Test;
 
-import com.example.surinklietuva.BigDataManager;
 import com.example.surinklietuva.Controllers.SignUpView;
-import com.example.surinklietuva.DataStructures.User;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.util.List;
+
 
 public class TestSignUp {
     @Test
@@ -26,4 +24,14 @@ public class TestSignUp {
         Assert.assertFalse(signUpView.checkEmailValidation("diana.gmail.com"));                //1.2 - correct
         Assert.assertTrue(signUpView.checkEmailValidation("diana@gmail.com"));                 //1.2 - correct
     }
+    @Test
+    public void TestUserPasswordValidation(){
+        SignUpView signUpView = new SignUpView();
+        Assert.assertTrue(signUpView.checkPasswordValidation("AAAbbbccc@123"));
+        Assert.assertTrue(signUpView.checkPasswordValidation("A!@#&()–a1"));
+        Assert.assertFalse(signUpView.checkPasswordValidation("12345678"));
+        Assert.assertFalse(signUpView.checkPasswordValidation("ABC123$$$"));
+    }
+
+
 }
