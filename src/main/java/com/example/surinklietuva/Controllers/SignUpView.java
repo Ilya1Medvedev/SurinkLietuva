@@ -19,6 +19,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpView {
     @FXML
     public TextField nameField;
@@ -49,6 +52,15 @@ public class SignUpView {
         }
         return true;
     }
+
+    //private static final String regexPattern = "^(.+)@(.+)$";
+    public static boolean checkEmailValidation(String emailValue){          //1.2
+            String regexPattern = "^(.+)@(.+)$";                            //1.2
+            return Pattern.compile(regexPattern)                            //1.2
+                    .matcher(emailValue)                                    //1.2
+                .matches();                                                 //1.2
+    }
+
     public void returnToPrevious(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
@@ -68,7 +80,10 @@ public class SignUpView {
         String login = loginField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
-        if(!checkPasswordLength(password)){
+        if(!checkEmailValidation(email)){
+            AllertBox.display("Klaida","Neteisingas emailo formatas");
+        }
+        else if(!checkPasswordLength(password)){
             AllertBox.display("Klaida","Slaptažodis turi būti ne ilgesnis 15 simbolių ir trumpesnis 4 simbolių");
         }
         // Check if fields not null, password field and confirm password field equals
