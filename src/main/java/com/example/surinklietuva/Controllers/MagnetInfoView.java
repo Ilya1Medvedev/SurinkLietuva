@@ -78,10 +78,8 @@ public class MagnetInfoView {
         regionImage.setImage(img);
         magnetInfo.setText(magnet.getName() + " " + magnet.getArea());
         String shops = "";
-        for (String s : magnet.getListOfShops()) {
-            shops += s + "\n";
-        }
-        magnetShops.setText(shops);
+
+        magnetShops.setText(magnet.getListOfShops());
     }
 
     public void returnToPrevious(ActionEvent actionEvent) throws IOException {

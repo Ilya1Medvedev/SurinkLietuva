@@ -6,12 +6,12 @@ public class Magnet {
 
     String area;
     String name;
-    List<String> listOfShops;
+    String listOfShops;
 
     public Magnet() {
     }
 
-    public Magnet(String area, String name, List<String> listOfShops) {
+    public Magnet(String area, String name, String listOfShops) {
         this.area = area;
         this.name = name;
         this.listOfShops = listOfShops;
@@ -37,11 +37,11 @@ public class Magnet {
         this.name = name;
     }
 
-    public List<String> getListOfShops() {
+    public String getListOfShops() {
         return listOfShops;
     }
 
-    public void setListOfShops(List<String> listOfShops) {
+    public void setListOfShops(String listOfShops) {
         this.listOfShops = listOfShops;
     }
 }

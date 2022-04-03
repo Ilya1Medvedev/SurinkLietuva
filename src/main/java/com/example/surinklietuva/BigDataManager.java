@@ -24,22 +24,22 @@ public class BigDataManager {
         String line;
         String permArea = "Vilniaus apskritis";
         String permCity = "UKMERGĖ";
-        List<String> permShops = new ArrayList<>();
+        String permShops = "";
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
             if (line.charAt(0) == 'A' && line.charAt(1) == 'A' && line.charAt(2) == 'A') {
                 magnets.add(new Magnet(permArea, permCity, permShops));
-                permShops = new ArrayList<>();
+                permShops = "";
                 permArea = makeAreaOrCityFromLine(line);
                 line = scanner.nextLine();
                 permCity = makeAreaOrCityFromLine(line);
             } else if (line.charAt(0) == 'M' && line.charAt(1) == 'M' && line.charAt(2) == 'M') {
 
                 magnets.add(new Magnet(permArea, permCity, permShops));
-                permShops = new ArrayList<>();
+                permShops = "";
                 permCity = makeAreaOrCityFromLine(line);
             } else {
-                permShops.add(line);
+                permShops+= line + "\n" ;
             }
         }
         magnets.add(new Magnet(permArea, permCity, permShops));
