@@ -1,4 +1,7 @@
-Savybe: Sukurti db
-  Duota:a asd
-  Kada:
-  Tada:
+# language: lt
+  Savybė: asd
+
+    Scenarijus:
+      Duota asd
+      Kai asd
+      Tada asd
