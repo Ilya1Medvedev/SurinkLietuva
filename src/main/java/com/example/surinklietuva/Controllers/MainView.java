@@ -27,6 +27,14 @@ public class MainView {
     @FXML
     public Text emailField;
     @FXML
+    public Text magnetukuSkaicius;
+    @FXML
+    public Text friendNameTxt;
+    @FXML
+    public Text friendSurname;
+    @FXML
+    public Text friendMail;
+    @FXML
     public Text MagnetsNumber;
     @FXML
     public Button logoutButton;
@@ -228,9 +236,46 @@ public class MainView {
         for(User u: listOfUsers){
             if(u.getName().equals(friendName.getText())){
                 System.out.print(u);
-                friends.getItems().add(u);
+                friends.getItems().add(u.getName() + " " + u.getSurname());
             }
         }
     }
 
+    public User getUserData(String name, String surname) throws FileNotFoundException {
+
+        listOfUsers = bigDataManager.getAllUserListFromDataBase();
+
+        for(User u: listOfUsers){
+            if(u.getName().equals(name) && u.getSurname().equals(surname)){
+
+                return u;
+
+            }
+        }
+
+        return null;
+    }
+
+    public void showFriend(ActionEvent actionEvent) throws FileNotFoundException {
+
+        User userInfo = new User();
+
+        String friend = myFriends.getSelectionModel().getSelectedItem().toString();
+
+        String[] parts = friend.split(" ");
+
+        String part1 = parts[0];
+        String part2 = parts[1];
+
+        userInfo = getUserData(part1, part2);
+
+        friendNameTxt.setText(userInfo.getName());
+        friendSurname.setText(userInfo.getSurname());
+        friendMail.setText(userInfo.getMail());
+
+        int magnetukai = userInfo.getMagnetList().size();
+        magnetukuSkaicius.setText(String.valueOf(magnetukai));
+
+    }
 }
+
