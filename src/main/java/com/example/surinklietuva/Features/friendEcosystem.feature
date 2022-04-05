@@ -12,7 +12,12 @@ Savybė: draugų ekosistema
     Kai Vartotojas bando pridėti draugą "Myles Mapkins"
     Tada Vartotojas sėkmingai pridėjo draugą.
 
-  Scenarijus: Peržiūrėti draugo profilį
+  Scenarijus: Pridėti draugą
     Duota Vartotojas turi draugą "Andrew Perkins"
-    Kai Vartotojas spaudžią peržiūrėti draugo "Andrew Perkins" profilio informacją.
-    Tada Vartotojui rodoma "Andrew Perkins" informacija.
+    Kai Vartotojas bando pridėti draugą nepasirinkus norimo vartotojo iš sąrašo
+    Tada Vartotojas gauna pranešimą "Jūsų pasirinkimas yra tuščias.".
+
+  Scenarijus: Pridėti draugą
+    Duota Vartotojas turi draugą "Andrew Perkins"
+    Kai Vartotojas bando pridėti draugą iš tuščio sąrašo
+    Tada Vartotojas gauna pranešimą "Jūsų pasirinkimas yra tuščias.".
