@@ -54,7 +54,7 @@ public class SignUpView {
     }
 
     //private static final String regexPattern = "^(.+)@(.+)$";
-    public static boolean checkEmailValidation(String emailValue){          //1.2
+    public static boolean checkEmailValidation(String emailValue){          //1.1
             String regexPattern = "^(.+)@(.+)$";                            //1.2
             return Pattern.compile(regexPattern)                            //1.2
                     .matcher(emailValue)                                    //1.2
