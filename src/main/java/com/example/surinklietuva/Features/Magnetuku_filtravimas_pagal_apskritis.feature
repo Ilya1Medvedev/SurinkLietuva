@@ -10,3 +10,10 @@
       Duota Vartotojas prisijungęs
       Kai Pasirenka "Visi duomenis" filtrą
       Tada Atvaizduojami visi trukstantys magnetukai
+
+    Scenarijus:
+      Duota Vartotojas prisijungęs ir turi visus magnetukus
+      Kai Pasirenka "Visi duomenis" filtrą
+      Tada Atvaizduojamas tuščias sąrašas
+
+
