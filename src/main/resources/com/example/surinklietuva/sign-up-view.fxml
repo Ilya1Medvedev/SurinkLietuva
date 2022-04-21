@@ -19,7 +19,8 @@
       <Label layoutX="34.0" layoutY="134.0" text="Prisijungimo vardas" />
       <Label layoutX="34.0" layoutY="193.0" text="Elektroninis paštas" />
       <Label layoutX="37.0" layoutY="243.0" text="Slaptažodis" />
-      <Label layoutX="38.0" layoutY="300.0" text="Patvirtinkite slaptažodį" />
+      <Label layoutX="38.0" layoutY="283.0" style="-fx-font-size: 10" text="Simbolių skaičius nei ilgesnis už 15 simbolių" />
+      <Label layoutX="39.0" layoutY="300.0" text="Patvirtinkite slaptažodį" />
       <Button fx:id="backButton" layoutX="14.0" layoutY="388.0" mnemonicParsing="false" onAction="#returnToPrevious" prefHeight="25.0" prefWidth="68.0" text="Atlgal" />
       <Button fx:id="signUpButton" layoutX="200.0" layoutY="388.0" mnemonicParsing="false" onAction="#createUser" text="Registruotis" />
    </children>
