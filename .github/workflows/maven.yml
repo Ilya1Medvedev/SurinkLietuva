@@ -24,6 +24,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Clean install
+        run: mvn clean install -X
       - name: Build and test project
         run: mvn -B verify
       - name: Upload Maven build artifact
