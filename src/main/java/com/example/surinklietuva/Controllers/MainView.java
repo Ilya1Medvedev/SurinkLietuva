@@ -1,5 +1,6 @@
 package com.example.surinklietuva.Controllers;
 
+import com.example.surinklietuva.AllertBox;
 import com.example.surinklietuva.BigDataManager;
 import com.example.surinklietuva.DataStructures.Magnet;
 import com.example.surinklietuva.DataStructures.User;
@@ -219,9 +220,10 @@ public class MainView {
     public void addFriend(ActionEvent actionEvent) {
 
         String futureFriends = friends.getSelectionModel().getSelectedItem().toString();
-        System.out.print(futureFriends);
 
-        myFriends.getItems().add(futureFriends);
+            System.out.print(futureFriends);
+
+            myFriends.getItems().add(futureFriends);
 
     }
 
@@ -234,7 +236,13 @@ public class MainView {
         friends.getItems().clear();
 
         for(User u: listOfUsers){
-            if(u.getName().equals(friendName.getText())){
+
+            if(friendName.getText().isEmpty()){
+                AllertBox.display("Klaida","Prašome įvesti vartotojo vardą");
+                break;
+            }
+
+            else if(u.getName().equals(friendName.getText())){
                 System.out.print(u);
                 friends.getItems().add(u.getName() + " " + u.getSurname());
             }
