@@ -1,9 +1,9 @@
 package com.example.surinklietuva.Controllers;
 
-import com.example.surinklietuva.AllertBox;
+import com.example.surinklietuva.AlertBox;
 import com.example.surinklietuva.BigDataManager;
 import com.example.surinklietuva.DataStructures.User;
-import com.example.surinklietuva.HelloApplication;
+import com.example.surinklietuva.StartProgram;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,9 +41,9 @@ public class LoginView {
                 .filter((u -> u.getUsername()
                         .equals(loginField.getText()) && (u.getPassword().equals(passwordField.getText())))).collect(Collectors.toList());
         if (currentUser.size() == 0) {
-            AllertBox.display("Klaida", "Duomenų bazėje nėra tokio vartotojo");
+            AlertBox.display("Klaida", "Duomenų bazėje nėra tokio vartotojo");
         } else {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("main-view.fxml"));
             Parent root = fxmlLoader.load();
             MainView mainView = fxmlLoader.getController();
             mainView.setData(listOfUsers, currentUser.get(0));
@@ -57,7 +57,7 @@ public class LoginView {
     }
 
     public void goToSignUpView(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("sign-up-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("sign-up-view.fxml"));
         Parent root = fxmlLoader.load();
         SignUpView signUpView = fxmlLoader.getController();
         signUpView.setData(listOfUsers);

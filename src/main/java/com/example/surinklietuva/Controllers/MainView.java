@@ -3,7 +3,7 @@ package com.example.surinklietuva.Controllers;
 import com.example.surinklietuva.BigDataManager;
 import com.example.surinklietuva.DataStructures.Magnet;
 import com.example.surinklietuva.DataStructures.User;
-import com.example.surinklietuva.HelloApplication;
+import com.example.surinklietuva.StartProgram;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -116,7 +116,7 @@ public class MainView {
     }
 
     public void logout(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
         LoginView loginView = fxmlLoader.getController();
         loginView.setData(listOfUsers);
@@ -174,7 +174,7 @@ public class MainView {
     public void goToMagnetInfo(ActionEvent actionEvent) throws IOException {
         String magnetName = regionMagnets.getSelectionModel().getSelectedItem().toString();
         Magnet currentMagnet = bigDataManager.getMagnetByName(magnetName);
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("magnet-info-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("magnet-info-view.fxml"));
         Parent root = fxmlLoader.load();
         MagnetInfoView magnetInfoView = fxmlLoader.getController();
         magnetInfoView.setData(listOfUsers, user, currentMagnet);

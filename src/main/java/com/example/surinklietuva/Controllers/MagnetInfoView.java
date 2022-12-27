@@ -3,7 +3,7 @@ package com.example.surinklietuva.Controllers;
 import com.example.surinklietuva.BigDataManager;
 import com.example.surinklietuva.DataStructures.Magnet;
 import com.example.surinklietuva.DataStructures.User;
-import com.example.surinklietuva.HelloApplication;
+import com.example.surinklietuva.StartProgram;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -85,7 +85,7 @@ public class MagnetInfoView {
     }
 
     public void returnToPrevious(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("main-view.fxml"));
         Parent root = fxmlLoader.load();
         MainView mainView = fxmlLoader.getController();
         mainView.setData(listOfUsers, user);

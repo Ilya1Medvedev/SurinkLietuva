@@ -1,10 +1,10 @@
 package com.example.surinklietuva.Controllers;
 
-import com.example.surinklietuva.AllertBox;
+import com.example.surinklietuva.AlertBox;
 import com.example.surinklietuva.BigDataManager;
 import com.example.surinklietuva.DataStructures.Magnet;
 import com.example.surinklietuva.DataStructures.User;
-import com.example.surinklietuva.HelloApplication;
+import com.example.surinklietuva.StartProgram;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,7 +69,7 @@ public class SignUpView {
     }
 
     public void returnToPrevious(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(StartProgram.class.getResource("login-view.fxml"));
         Parent root = fxmlLoader.load();
         LoginView loginView = fxmlLoader.getController();
         loginView.setData(listOfUsers);
@@ -107,12 +107,12 @@ public class SignUpView {
             }
             else
             {
-                AllertBox.display("Klaida", "Vartotojas su tokiu prisijungimu jau egzistuoja");
+                AlertBox.display("Klaida", "Vartotojas su tokiu prisijungimu jau egzistuoja");
             }
         }
         else
         {
-            AllertBox.display("Klaida", "Visi laukai turi būti užpildyti");
+            AlertBox.display("Klaida", "Visi laukai turi būti užpildyti");
         }
     }
 }
