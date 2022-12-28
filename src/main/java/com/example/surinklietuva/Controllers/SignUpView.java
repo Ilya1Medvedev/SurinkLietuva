@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUpView {
@@ -41,29 +40,26 @@ public class SignUpView {
     public Button signUpButton;
 
     private List<User> listOfUsers;
-    private BigDataManager bigDataManager = new BigDataManager();
+    private final BigDataManager bigDataManager = new BigDataManager();
+    private static final Pattern emailPattern = Pattern.compile("(.*)(\\d+)(.*)");
+    private static final Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{4,15}$");
+    private static final int PASSWORD_MIN_SIZE = 4;
+    private static final int PASSWORD_MAX_SIZE = 15;
 
-    public void setData(List<User> listOfUsers){
+    public void setData(List<User> listOfUsers) {
         this.listOfUsers = listOfUsers;
     }
-    public boolean checkPasswordLength(String passValue){
-        if(passValue.length()>15 || passValue.length()<4){
-            return false;
-        }
-        return true;
+
+    public boolean checkPasswordLength(String passValue) {
+        return !(passValue.length() > PASSWORD_MAX_SIZE || passValue.length() < PASSWORD_MIN_SIZE);
     }
 
-    //private static final String regexPattern = "^(.+)@(.+)$";
-    public static boolean checkEmailValidation(String emailValue){          //1.1
-            String regexPattern = "^(.+)@(.+)$";                            //1.2
-            return Pattern.compile(regexPattern)                            //1.2
-                    .matcher(emailValue)                                    //1.2
-                .matches();                                                 //1.2
+    public static boolean checkEmailValidation(String emailValue) {
+        return emailPattern.matcher(emailValue).matches();
     }
 
-    public static boolean checkPasswordValidation(String passwordValueOfSimbols){
-        String regexPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{4,15}$";
-        return Pattern.compile(regexPattern)
+    public static boolean checkPasswordValidation(String passwordValueOfSimbols) {
+        return passwordPattern
                 .matcher(passwordValueOfSimbols)
                 .matches();
     }
@@ -87,31 +83,25 @@ public class SignUpView {
         String login = loginField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
-        if(!checkEmailValidation(email)){
-            AllertBox.display("Klaida","Neteisingas emailo formatas");
-        }
-        else if(!checkPasswordLength(password)){
-            AllertBox.display("Klaida","Slaptažodis turi būti ne ilgesnis 15 simbolių ir trumpesnis 4 simbolių");
-        }
-        else if(!checkPasswordValidation(password)){
-            AllertBox.display("Klaida","Slaptažodis turi turėti savyyje 1 simbolį, viena didžiąją raidę,nors viena skaičių");
+        if (!checkEmailValidation(email)) {
+            AlertBox.display("Klaida", "Neteisingas emailo formatas");
+        } else if (!checkPasswordLength(password)) {
+            AlertBox.display("Klaida", "Slaptažodis turi būti ne ilgesnis 15 simbolių ir trumpesnis 4 simbolių");
+        } else if (!checkPasswordValidation(password)) {
+            AlertBox.display("Klaida", "Slaptažodis turi turėti savyyje 1 simbolį, viena didžiąją raidę,nors viena skaičių");
         }
         // Check if fields not null, password field and confirm password field equals
-        else if(!name.equals("") && !surname.equals("") && !login.equals("") && !email.equals("") && !password.equals("") && password.equals(confirmPasswordField.getText())) {
+        else if (!"".equals(name) && !"".equals(surname) && !"".equals(login) && !"".equals(email) && !"".equals(password) && confirmPasswordField.getText().equals(password)) {
             // Check if login value is distinct
-            if(listOfUsers.stream().noneMatch(u-> u.getUsername().equals(login))) {
+            if (listOfUsers.stream().noneMatch(u -> u.getUsername().equals(login))) {
                 List<Magnet> emptyMagnetList = new ArrayList<>();
                 listOfUsers.add(new User(name, surname, login, email, password, emptyMagnetList));
                 bigDataManager.writeAllUsersToDB(listOfUsers);
                 returnToPrevious(actionEvent);
-            }
-            else
-            {
+            } else {
                 AlertBox.display("Klaida", "Vartotojas su tokiu prisijungimu jau egzistuoja");
             }
-        }
-        else
-        {
+        } else {
             AlertBox.display("Klaida", "Visi laukai turi būti užpildyti");
         }
     }

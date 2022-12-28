@@ -51,8 +51,8 @@ public class MainView {
     private User user;
     private List<User> listOfUsers;
     private List<Magnet> missingMagnets;
-    private BigDataManager bigDataManager = new BigDataManager();
-    private List<String> allAreasList = Arrays.asList("Vilniaus apskritis", "Kauno apskritis", "Klaipėdos apskritis", "Šiaulių apskritis", "Telšių apskritis", "Marijampolės apskritis", "Tauragės apskritis", "Utenos apskritis", "Panevėžio apskritis", "Alytaus apskritis");
+    private final BigDataManager bigDataManager = new BigDataManager();
+    private final List<String> ALL_AREA_LIST = Arrays.asList("Vilniaus apskritis", "Kauno apskritis", "Klaipėdos apskritis", "Šiaulių apskritis", "Telšių apskritis", "Marijampolės apskritis", "Tauragės apskritis", "Utenos apskritis", "Panevėžio apskritis", "Alytaus apskritis");
 
     public void setData(List<User> listOfUsers, User user) throws FileNotFoundException {
         this.listOfUsers = listOfUsers;
@@ -154,7 +154,7 @@ public class MainView {
         magnetsNum.setText(user.getMagnetList().size() + " / 60");
 
         regionsListOfView.getItems().clear();
-        for (String s : allAreasList) {
+        for (String s : ALL_AREA_LIST) {
             regionsListOfView.getItems().add(s);
         }
 
@@ -188,7 +188,7 @@ public class MainView {
 
     public void checkboxFunc() throws FileNotFoundException {
         String regionName = regionChoiceBox.getValue().toString();
-        if (regionName.equals("Visi duomenis")) {
+        if ("Visi duomenis".equals(regionName)) {
             fillTables();
         } else if (regionName != null) {
             missingMagnetsListOfView.getItems().clear();

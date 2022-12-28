@@ -10,8 +10,6 @@ public class User {
     private String password;
     private List<Magnet> magnetList;
 
-    public User() {
-    }
 
     public User(String name, String surname, String username, String mail, String password, List<Magnet> magnetList) {
         this.name = name;

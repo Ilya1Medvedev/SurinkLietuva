@@ -14,8 +14,9 @@ import java.util.stream.Collectors;
 
 public class BigDataManager {
 
-    private List<Magnet> magnets = new ArrayList<>();
+    private final List<Magnet> MAGNETS = new ArrayList<>();
     private File file;
+    private static final int DATA_SIZE = 5;
 
     public List<Magnet> getAllMagnetsListFromDataBase() throws FileNotFoundException {
 
@@ -28,22 +29,22 @@ public class BigDataManager {
         while (scanner.hasNextLine()) {
             line = scanner.nextLine();
             if (line.charAt(0) == 'A' && line.charAt(1) == 'A' && line.charAt(2) == 'A') {
-                magnets.add(new Magnet(permArea, permCity, permShops));
+                MAGNETS.add(new Magnet(permArea, permCity, permShops));
                 permShops = new ArrayList<>();
                 permArea = makeAreaOrCityFromLine(line);
                 line = scanner.nextLine();
                 permCity = makeAreaOrCityFromLine(line);
             } else if (line.charAt(0) == 'M' && line.charAt(1) == 'M' && line.charAt(2) == 'M') {
 
-                magnets.add(new Magnet(permArea, permCity, permShops));
+                MAGNETS.add(new Magnet(permArea, permCity, permShops));
                 permShops = new ArrayList<>();
                 permCity = makeAreaOrCityFromLine(line);
             } else {
                 permShops.add(line);
             }
         }
-        magnets.add(new Magnet(permArea, permCity, permShops));
-        return magnets;
+        MAGNETS.add(new Magnet(permArea, permCity, permShops));
+        return MAGNETS;
     }
 
     private String makeAreaOrCityFromLine(String line) {
@@ -53,12 +54,6 @@ public class BigDataManager {
             area += line.charAt(i);
         }
         return area;
-    }
-
-    private List<Magnet> getAllMagnetsByArea(String areaName, List<Magnet> allMagnets) /////////////NOT FININSHEDDDDDDDD
-    {
-        //for(int i=allMagnets.size())
-        return null;
     }
 
     public List<User> getAllUserListFromDataBase() throws FileNotFoundException {
@@ -71,12 +66,12 @@ public class BigDataManager {
             line = scanner.nextLine();
             tempStrings = returnStringsListFromLine(line);
             List<Magnet> tempMagnets = new ArrayList<>();
-            if (tempStrings.size() > 5) {
+            if (tempStrings.size() > DATA_SIZE) {
                 for (int i = 5; i < tempStrings.size(); i++) {
                     tempMagnets.add(getMagnetByName(tempStrings.get(i)));
                 }
             }
-            if (tempStrings.size() > 5) {
+            if (tempStrings.size() > DATA_SIZE) {
                 users.add(new User(tempStrings.get(0), tempStrings.get(1), tempStrings.get(2), tempStrings.get(3), tempStrings.get(4), tempMagnets));
             } else {
                 tempMagnets = new ArrayList<>();
@@ -96,9 +91,9 @@ public class BigDataManager {
         file = new File(System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\surinklietuva\\ProgramMemory\\UsersDataBase");
         FileWriter writer = null;
         writer = new FileWriter(file);
-        for (int i = 0; i < usersToWrite.size(); i++) {
+        for (User user : usersToWrite) {
 
-            writer.write(usersToWrite.get(i).getUserInfoForDataBase() + "\n");
+            writer.write(user.getUserInfoForDataBase() + "\n");
         }
         writer.close();
     }
@@ -111,9 +106,9 @@ public class BigDataManager {
     }
 
     public void updateUserToDataBase(List<User> userList, User userToUpdate) throws IOException {
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUsername().equals(userToUpdate.getUsername())) {
-                userList.get(i).setMagnetList(userToUpdate.getMagnetList());
+        for (User user : userList) {
+            if (user.getUsername().equals(userToUpdate.getUsername())) {
+                user.setMagnetList(userToUpdate.getMagnetList());
             }
         }
         writeAllUsersToDB(userList);
