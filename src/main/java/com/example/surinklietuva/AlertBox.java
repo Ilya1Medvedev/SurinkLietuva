@@ -9,6 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AlertBox {
+    private static int MIN_WIDTH = 250;
 
     public static void display(String title, String message) {
         Stage window = new Stage();
@@ -20,7 +21,7 @@ public class AlertBox {
 
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
-        window.setMinWidth(250);
+        window.setMinWidth(MIN_WIDTH);
 
         VBox layout = new VBox();
         layout.getChildren().addAll(label, button);

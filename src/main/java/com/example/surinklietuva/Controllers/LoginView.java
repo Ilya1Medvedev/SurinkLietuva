@@ -1,7 +1,6 @@
 package com.example.surinklietuva.Controllers;
 
 import com.example.surinklietuva.AlertBox;
-import com.example.surinklietuva.BigDataManager;
 import com.example.surinklietuva.DataStructures.User;
 import com.example.surinklietuva.StartProgram;
 import javafx.event.ActionEvent;

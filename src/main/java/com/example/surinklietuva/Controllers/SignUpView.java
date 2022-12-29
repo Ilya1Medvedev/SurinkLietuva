@@ -41,7 +41,7 @@ public class SignUpView {
 
     private List<User> listOfUsers;
     private final BigDataManager bigDataManager = new BigDataManager();
-    private static final Pattern emailPattern = Pattern.compile("(.*)(\\d+)(.*)");
+    private static final Pattern emailPattern = Pattern.compile("^(.+)@(.+)$");
     private static final Pattern passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{4,15}$");
     private static final int PASSWORD_MIN_SIZE = 4;
     private static final int PASSWORD_MAX_SIZE = 15;
@@ -50,7 +50,7 @@ public class SignUpView {
         this.listOfUsers = listOfUsers;
     }
 
-    public boolean checkPasswordLength(String passValue) {
+    public static boolean checkPasswordLength(String passValue) {
         return !(passValue.length() > PASSWORD_MAX_SIZE || passValue.length() < PASSWORD_MIN_SIZE);
     }
 
